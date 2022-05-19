@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.example.demo.utils.Auditable;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import javax.validation.constraints.*;
 @Table(name = "users")
 @Getter
 @Setter
-public class User {
+public class User extends Auditable<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,7 +22,7 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @Size(min = 10, max = 10) @NotNull
+    @Size(min = 10, max = 10)
     @Pattern(regexp="(^$|[0-9]{10})")
     private String phone;
 

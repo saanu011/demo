@@ -1,13 +1,15 @@
 package com.example.demo.services;
 
-import com.example.demo.Repository.UserRepository;
+import com.example.demo.repositories.UserRepository;
 import com.example.demo.models.User;
 import com.example.demo.models.dto.UserDto;
 import com.example.demo.utils.BeanMapper;
 import com.example.demo.utils.CommonUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     UserRepository userRepository;

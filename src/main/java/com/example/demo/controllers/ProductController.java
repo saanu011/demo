@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.dto.UserDto;
-import com.example.demo.services.UserService;
+import com.example.demo.models.dto.ProductDto;
+import com.example.demo.services.ProductService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,23 +17,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/v1/users")
-public class UserController {
+@RequestMapping("api/v1/products")
+public class ProductController {
 
     @Autowired
-    UserService userService;
+    ProductService productService;
 
     @PostMapping(name = "", produces = "application/json")
-    public ResponseEntity<UserDto> create(@RequestBody UserDto userDto) {
-        return new ResponseEntity<>(userService.create(userDto), HttpStatus.CREATED);
+    public ResponseEntity<ProductDto> create(@RequestBody ProductDto productDto) {
+        return new ResponseEntity<>(productService.create(productDto), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "", produces = "application/json")
     public ResponseEntity<Map<String, Object>> index(HttpServletRequest request) {
         Pageable pageable = getPaginationAndSortingParams(request);
-        Page<UserDto> userDtoPage = userService.index(pageable);
+        Page<ProductDto> productDtoPage = productService.index(pageable);
         Map<String, Object> mapper = new HashMap<>();
-        mapper.put("data", userDtoPage.getContent());
+        mapper.put("data", productDtoPage.getContent());
         return ResponseEntity.ok(mapper);
     }
 
